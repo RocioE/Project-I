@@ -37,4 +37,5 @@ $('#submit').on('click', function getArtist(event) {
 
 function updatePage() {
 
+    $('.artist').text(artist);
 }
