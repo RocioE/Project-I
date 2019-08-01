@@ -83,35 +83,51 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+
     <div class="container">
         <h1>MmmBop!</h1>
         <p>Lyrics on the Go!</p>
     </div>
 
     <div class="jumbotron jumbotron-fluid">
-        <div class="artistContainer">
-            <h3>Search by Artist</h3>
 
-            <form id="artist-form">
-                <label for="artist-input">Search by Artist!</label>
-                <input class="artist-control" type="text" id="artist-input">
+        <div class="searchContainer">
+            <h3>Search Lyrics by Artist & Song</h3>
+
+            <form>
+                <label for="artist-input"></label>
+                <input class="artist-control" type="text" id="artist-input" placeholder="Artist Name">
+
+                <label for="track-input"></label>
+                <input class="track-control" type="text" id="track-input" placeholder="Song"><br>
                 <br>
+                <button class="btn btn-default" id="submit" type="submit">Submit</button>
 
-                <div class="searchContainer">
+            </form>
+        </div>
+
+
+    </div>
+
+    <!-- Begin page content -->
+    <br>
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">@MmmBop!2019</span>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>
+<!-- <div class="searchContainer">
                     <h3>Top 10 Songs</h3>
 
                     <form id="resultContainer-form">
                         <label for="result-input">Top 10 Results!</label>
                         <input class="result-control" type="text" id="result-input"><br>
-                </div>
-
-                <div class="tracksContainer">
-                    <h3>Tracks</h3>
-
-                    <form id="tracksContainer-form">
-                        <label for="tracks-input">Top Tracks!</label>
-                        <input class="tracks-control" type="text" id="tracks-input"><br>
-                        <br>
                 </div>
 
                 <div class="lyricsContainer">
@@ -121,22 +137,4 @@
                         <label for="lyrics-input">Lyrics!</label>
                         <input class="lyrics-control" type="text" id="lyrics-input"><br>
                         <br>
-                </div>
-
-
-        </div>
-
-        <!-- Begin page content -->
-        <br>
-        <footer class="footer">
-            <div class="container">
-                <span class="text-muted">@MmmBop!2019</span>
-            </div>
-        </footer>
-
-    </div>
-
-
-</body>
-
-</html>
+                </div> -->
