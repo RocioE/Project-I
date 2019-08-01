@@ -1,17 +1,23 @@
-var apiKey = “65556 a2efa1feefbbd18ccb3228569c4”;
-var queryURL = "https://api.musixmatch.com/ws/1.1/";
-var artist_id = $(‘#searchTerm).val().trim(); //search artist object
-//search for a text string among song titles,artist names and lyrics.
-var q;
-
-var queryURL = "https://api.musixmatch.com/ws/1.1/" + apiKey + artist_id;
-
-
-// Make the AJAX request to the API - GETs the JSON data at the queryURL.
-// The data then gets passed as an argument to the updatePage function
 $.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function(response) {
-    console.log(response);
+    type: "GET",
+    data: {
+        apikey: "65556a2efa1feefbbd18ccb3228569c4",
+        q_track: "back to december",
+        q_artist: "taylor%20swift",
+        f_has_lyrics: 1,
+        format: "jsonp",
+        callback: "jsonp_callback"
+    },
+    url: "http://api.musixmatch.com/ws/1.1/track.search",
+    dataType: "jsonp",
+    jsonpCallback: 'jsonp_callback',
+    contentType: 'application/json',
+    success: function(data) {
+        console.log(data);
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+    }
 });
