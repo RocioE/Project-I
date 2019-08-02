@@ -6,20 +6,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <!-- Are these bootstrap tag links ?-->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+
     <title>Profile Page</title>
 </head>
 
 <body>
 
-
     <div class="container">
-        <div class="artistDisplay jumbotron text-center">artist name</div>
 
-        <div class="row"></div>
+        <div class='row'>
+            <div class="searchContainer">
+                <h3>Search Lyrics by Artist & Song</h3>
+
+                <form>
+                    <label for="artist-input"></label>
+                    <input class="artist-control" type="text" id="artist-input" placeholder="Artist Name">
+
+                    <label for="track-input"></label>
+                    <input class="track-control" type="text" id="track-input" placeholder="Song"><br>
+                    <br>
+                    <button class="btn btn-default" id="submit" type="submit">Submit</button>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="artistDisplay jumbotron text-center">artist name
+                <div class="artist"></div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="resultsContainer">
@@ -28,8 +52,7 @@
                 <div class="lyrics">lyrics</div>
             </div>
         </div>
-        <!-- <iframe src="****Video link goes here****"> -->
-        <!-- </iframe> -->
+
     </div>
 
     <script src="./assets/js/main.js" type="text/javascript"></script>

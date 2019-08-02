@@ -1,0 +1,23 @@
+        container {
+            background: rgb(243, 150, 207);
+            margin-top: 5%;
+            margin-left: 10%;
+        }
+        
+        .h1 {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        body {
+            text-align: center;
+            color: orangered;
+            font-family: fantasy;
+            font-size: 175%;
+        }
+        
+        .carousel-inner>.item>img,
+        .carousel-inner>.item>a>img {
+            width: 70%;
+            margin: auto;
+        }
