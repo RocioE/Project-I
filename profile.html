@@ -9,6 +9,8 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- musixMatch javascript needed to return lyrics -->
+    <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <!-- Are these bootstrap tag links ?-->
@@ -47,10 +49,17 @@
 
         <div class="row">
             <div class="resultsContainer">
-                <div>[ Insert Artist Thumbnail ]<span class='imgThumbnail'></span></div>
-                <div>[ Insert Track ]<span class='track'></span></div>
-                <div>[ Insert Video ]<span class="video"></span></div>
-                <div>[ Insert Lyrics ]<span class="lyrics"></span></div>
+                <div>Artist Thumbnail <span class='imgThumbnail'></span></div>
+                <div>Track <span class='track'></span></div>
+                <div>Video <span class="video"></span></div>
+                <div>Lyrics <span class="lyrics"></span>
+                    <div>
+                        <iframe src="https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark" style="border:none;background:transparent;" width="100%" height="380" border=0></iframe>
+                        <a href="https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December">View Back to December
+                            Lyrics by Taylor Swift</a>
+                    </div>
+
+                </div>
             </div>
         </div>
 
