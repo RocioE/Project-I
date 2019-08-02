@@ -21,3 +21,21 @@ $.ajax({
         console.log(errorThrown);
     }
 });
+var q_artist = ['taylor%20swift', 'beyonce'];
+
+$('#submit').on('click', function getArtist(event) {
+    event.preventDefault();
+
+    artist = $('#artist-input').val().trim();
+    // track = $('#track-input’).val().trim();
+
+    //push artist to artist array
+    q_artist.push(artist);
+
+    updatePage();
+})
+
+function updatePage() {
+
+    $('.artist').text(artist);
+}
