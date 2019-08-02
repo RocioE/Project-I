@@ -16,8 +16,13 @@
             font-size: 175%;
         }
         
-        .carousel-inner>.item>img,
+       
         .carousel-inner>.item>a>img {
             width: 70%;
             margin: auto;
         }
+
+    background: {
+        rgb(243, 150, 207);
+            
+    }
