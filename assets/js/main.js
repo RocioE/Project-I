@@ -26,19 +26,18 @@ $(document).ready(function() {
             console.log(errorThrown);
         }
     });
-    // var q_artist = ['taylor%20swift', 'beyonce'];
 
-    $('#submit').on('click', function getArtist(event) {
+    $('#submit').on('click', function getUserInput(event) {
         event.preventDefault();
 
         artist = $('#artist-input').val().trim();
         track = $('#track-input').val().trim();
 
-        console.log(artist + '' + track);
-        //push artist to artist array
-        // q_artist.push(artist);
+        console.log(artist + ' ' + track);
 
         updatePage();
+        resetInput();
+
     })
 
     function updatePage() {
@@ -47,4 +46,8 @@ $(document).ready(function() {
         $('.track').append(track);
     }
 
+    function resetInput() {
+        $('#artist-input').text('');
+        $('#track-input').text('');
+    }
 });
