@@ -21,7 +21,10 @@ $(document).ready(function() {
             console.log(data);
             console.log(data.message.body.track_list[0].track.artist_name);
             var artistName = data.message.body.track_list[0].track.artist_name;
+            var trackName = data.message.body.track_list[0].track.track_name;
             $('.artist').text(artistName);
+            $('.track').text(trackName);
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -40,6 +43,10 @@ $(document).ready(function() {
     //   searchMusixMatch("Taylor Swift");
     //   searchMusixMatch("The Lion King");
 
+
+    // -----------------------------------------------------------------------------
+    // user input events & functions
+    // event listener that captures & stores user input into variables, updates html & resets input boxes
     $('#submit').on('click', function getUserInput(event) {
         event.preventDefault();
 
