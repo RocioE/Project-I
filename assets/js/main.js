@@ -19,6 +19,9 @@ $(document).ready(function() {
         contentType: 'application/json',
         success: function(data) {
             console.log(data);
+            console.log(data.message.body.track_list[0].track.artist_name);
+            var artistName = data.message.body.track_list[0].track.artist_name;
+            $('.artist').text(artistName);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -26,6 +29,16 @@ $(document).ready(function() {
             console.log(errorThrown);
         }
     });
+
+    // The search musixMatch function takes a movie, searches the musixMatch api for it, and then passes the data to createRow
+    var searchMusixMatch = function(artist) {
+
+    };
+
+    // Search the musixMatch API for the following artist
+    searchMusixMatch();
+    //   searchMusixMatch("Taylor Swift");
+    //   searchMusixMatch("The Lion King");
 
     $('#submit').on('click', function getUserInput(event) {
         event.preventDefault();
@@ -50,4 +63,6 @@ $(document).ready(function() {
         $('#artist-input').text('');
         $('#track-input').text('');
     }
+
+
 });
