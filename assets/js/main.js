@@ -3,6 +3,25 @@ $(document).ready(function() {
     var artist;
     var track;
 
+    // -----------------------------------------------------------------------------
+    //table with row for top _____
+    // The createRow function takes data returned by OMDB and appends the table data to the tbody
+    var createRow = function(data) {
+        // Create a new table row element
+        var tRow = $("<tr>");
+
+        // Methods run on jQuery selectors return the selector they we run on
+        // This is why we can create and save a reference to a td in the same statement we update its text
+        var titleTd = $("<td>").text(data.Title);
+        var yearTd = $("<td>").text(data.Year);
+        var actorsTd = $("<td>").text(data.Actors);
+
+        // Append the newly created table data to the table row
+        tRow.append(titleTd, yearTd, actorsTd);
+        // Append the table row to the table body
+        $("tbody").append(tRow);
+    };
+
     $.ajax({
         type: "GET",
         data: {
@@ -31,13 +50,14 @@ $(document).ready(function() {
             $('.track').text(trackName);
 
             var source = "https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark";
-            // var src = "https://www.musixmatch.com/lyrics/" + "Taylor-Swift" + "/" + "Back-to-December" + "/embed?theme=dark";
+            // var source = "https://www.musixmatch.com/lyrics/" + q_artist + "/" + q_track + "/embed?theme=dark";
 
             //add source attribute to iframe tag
             var lyricsDiv = $('<iframe>').attr('src', source);
 
             //append source attribute to HTML
             $('.lyrics').append(lyricsDiv);
+            // createRow();
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -48,13 +68,13 @@ $(document).ready(function() {
     });
 
     // The search musixMatch function takes a movie, searches the musixMatch api for it, and then passes the data to createRow
-    var searchMusixMatch = function(artist) {
+    var searchArtist = function(artist) {
         $.ajax({
             type: "GET",
             data: {
                 apikey: "65556a2efa1feefbbd18ccb3228569c4",
                 // q_track: "back to december",
-                q_artist: "taylor%20swift",
+                q_artist: artist,
                 f_has_lyrics: 1,
                 format: "jsonp",
                 callback: "jsonp_callback"
@@ -64,10 +84,11 @@ $(document).ready(function() {
             jsonpCallback: 'jsonp_callback',
             contentType: 'application/json',
             success: function(data) {
-                console.log('artist search ' + data);
+                console.log('artist search ', data);
                 // console.log(data.message.body.track_list[0].track.artist_name);
                 // var artistName = data.message.body.track_list[0].track.artist_name;
                 // $('.artist').text(artistName);
+
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR);
@@ -78,9 +99,10 @@ $(document).ready(function() {
     };
 
     // Search the musixMatch API for the following artist
-    searchMusixMatch();
-    //   searchMusixMatch("Taylor Swift");
-    //   searchMusixMatch("The Lion King");
+    // searchArtist(artist);
+    //   searchArtist("Taylor Swift");
+    //   searchArtist("The Lion King");
+
 
 
     // -----------------------------------------------------------------------------
@@ -91,6 +113,8 @@ $(document).ready(function() {
 
         artist = $('#artist-input').val().trim();
         track = $('#track-input').val().trim();
+
+        // artist = artist.split(" ").join("%20")
 
         console.log(artist + ' ' + track);
 
