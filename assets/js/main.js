@@ -29,7 +29,16 @@ $(document).ready(function() {
             //writing or appending to HTML
             $('.artist').text(artistName);
             $('.track').text(trackName);
-            // $('.lyrics').append('<div><iframe src="//www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark" style="border:none;background:transparent;" width="100%" height="380" border=0></iframe><a href="https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December">View Back to December Lyrics by Taylor Swift</a> at <a href="https://www.musixmatch.com/">Musixmatch</a></div>');
+
+            var source = "https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark";
+            // var src = "https://www.musixmatch.com/lyrics/" + "Taylor-Swift" + "/" + "Back-to-December" + "/embed?theme=dark";
+
+            //add source attribute to iframe tag
+            var lyricsDiv = $('<iframe>').attr('src', source);
+
+            //append source attribute to HTML
+            $('.lyrics').append(lyricsDiv);
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -68,7 +77,7 @@ $(document).ready(function() {
     function updatePage() {
         console.log('hit updatePage()');
         $('.artist').text(artist);
-        $('.track').append(track);
+        $('.track').text(track);
     }
 
     function resetInput() {
