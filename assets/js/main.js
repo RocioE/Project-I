@@ -32,7 +32,32 @@ $(document).ready(function() {
 
     // The search musixMatch function takes a movie, searches the musixMatch api for it, and then passes the data to createRow
     var searchMusixMatch = function(artist) {
-
+        $.ajax({
+            type: "GET",
+            data: {
+                apikey: "65556a2efa1feefbbd18ccb3228569c4",
+                // q_track: "back to december",
+                q_artist: "taylor%20swift",
+                f_has_lyrics: 1,
+                format: "jsonp",
+                callback: "jsonp_callback"
+            },
+            url: "http://api.musixmatch.com/ws/1.1/track.search",
+            dataType: "jsonp",
+            jsonpCallback: 'jsonp_callback',
+            contentType: 'application/json',
+            success: function(data) {
+                console.log('artist search ' + data);
+                // console.log(data.message.body.track_list[0].track.artist_name);
+                // var artistName = data.message.body.track_list[0].track.artist_name;
+                // $('.artist').text(artistName);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }
+        });
     };
 
     // Search the musixMatch API for the following artist
