@@ -1,28 +1,28 @@
-        container {
+img{
+    height: 300px;
+    width:300px;
+}
+
+
+.container {
             background: rgb(243, 150, 207);
             margin-top: 5%;
             margin-left: 10%;
         }
-        
-        .h1 {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        body {
-            text-align: center;
-            color: orangered;
-            font-family: fantasy;
-            font-size: 175%;
-        }
-        
-       
-        .carousel-inner>.item>a>img {
-            width: 70%;
-            margin: auto;
-        }
 
-    background: {
-        rgb(243, 150, 207);
-            
-    }
+.footer {
+
+}
+
+.carousel-caption {
+    position: relative !important;
+}
+.carousel-caption h3 {
+    position: absolute;
+    /* top: 20px; */
+    /* left: -134px; */
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img {
+    margin: 0 auto;
+}

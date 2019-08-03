@@ -19,9 +19,26 @@ $(document).ready(function() {
         contentType: 'application/json',
         success: function(data) {
             console.log(data);
-            console.log(data.message.body.track_list[0].track.artist_name);
+
+            //declare & initialize local variables for easier way to reference data wanted 
             var artistName = data.message.body.track_list[0].track.artist_name;
+            var trackName = data.message.body.track_list[0].track.track_name;
+            var trackShare = data.message.body.track_list[0].track.track_share_url;
+            console.log('track_share_url ' + trackShare)
+
+            //writing or appending to HTML
             $('.artist').text(artistName);
+            $('.track').text(trackName);
+
+            var source = "https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark";
+            // var src = "https://www.musixmatch.com/lyrics/" + "Taylor-Swift" + "/" + "Back-to-December" + "/embed?theme=dark";
+
+            //add source attribute to iframe tag
+            var lyricsDiv = $('<iframe>').attr('src', source);
+
+            //append source attribute to HTML
+            $('.lyrics').append(lyricsDiv);
+
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -40,6 +57,10 @@ $(document).ready(function() {
     //   searchMusixMatch("Taylor Swift");
     //   searchMusixMatch("The Lion King");
 
+
+    // -----------------------------------------------------------------------------
+    // user input events & functions
+    // event listener that captures & stores user input into variables, updates html & resets input boxes
     $('#submit').on('click', function getUserInput(event) {
         event.preventDefault();
 
@@ -56,7 +77,7 @@ $(document).ready(function() {
     function updatePage() {
         console.log('hit updatePage()');
         $('.artist').text(artist);
-        $('.track').append(track);
+        $('.track').text(track);
     }
 
     function resetInput() {
