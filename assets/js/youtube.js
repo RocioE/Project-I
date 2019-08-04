@@ -1,3 +1,9 @@
+//copy & pasted code from https://developers.google.com/youtube/iframe_api_reference#Requirements
+//to get a working example of the video player up & running.
+//Need to adjust the code by turning the value of var videoId to a variable that 
+//represents the video id.
+
+
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 
