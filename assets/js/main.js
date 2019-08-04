@@ -1,31 +1,25 @@
 $(document).ready(function() {
 
-    var data;
+    var response;
     var artist;
     var track;
+    var artistName, trackName;
 
-    // -----------------------------------------------------------------------------
-    //table with row for top _____
-    // The createRow function takes data returned by OMDB and appends the table data to the tbody
-    var createRow = function(data) {
-        // Create a new table row element
-        var tRow = $("<tr>");
+    // event listener that captures & stores user input into variables, updates html & resets input boxes
+    $('#submit').on('click', function getUserInput(event) {
+        event.preventDefault();
 
-        for (var x = 0; x < 10; x++) {
-            var artistTd = $("<td>").text(data.message.body.track_list[x].track.track_name);
-            tRow.append(artistTd);
-        }
-        // Methods run on jQuery selectors return the selector they we run on
-        // This is why we can create and save a reference to a td in the same statement we update its text
-        // var titleTd = $("<td>").text(data.);
-        // var yearTd = $("<td>").text(data.Year);
-        // var actorsTd = $("<td>").text(data.Actors);
+        artist = $('#artist-input').val().trim();
+        track = $('#track-input').val().trim();
 
-        // Append the newly created table data to the table row
-        // tRow.append(titleTd, yearTd, actorsTd);
-        // Append the table row to the table body
-        $("tbody").append(tRow);
-    };
+        // artist = artist.split(" ").join("%20")
+
+        console.log(artist + ' ' + track);
+
+        updatePage();
+        resetInput();
+
+    });
 
     $.ajax({
         type: "GET",
@@ -43,11 +37,13 @@ $(document).ready(function() {
         contentType: 'application/json',
         success: function(data) {
             console.log(data);
+            response = data;
+            console.log(response);
 
             //declare & initialize local variables for easier way to reference data wanted 
-            var artistName = data.message.body.track_list[0].track.artist_name;
-            var trackName = data.message.body.track_list[0].track.track_name;
-            var trackShare = data.message.body.track_list[0].track.track_share_url;
+            artistName = response.message.body.track_list[0].track.artist_name;
+            trackName = response.message.body.track_list[0].track.track_name;
+            var trackShare = response.message.body.track_list[0].track.track_share_url;
             console.log('track_share_url ' + trackShare)
 
             //writing or appending to HTML
@@ -62,19 +58,7 @@ $(document).ready(function() {
 
             //append source attribute to HTML
             $('.lyrics').append(lyricsDiv);
-            // createRow();
-
-
-
-            for (var x = 0; x < 10; x++) {
-                // Create a new table row element
-                var tRow = $("<tr>");
-                var artistTd = $("<td>").text(data.message.body.track_list[x].track.artist_name);
-                var trackTd = $("<td>").text(data.message.body.track_list[x].track.track_name);
-                tRow.append(artistTd, trackTd);
-                $("tbody").append(tRow);
-            }
-
+            createRow(response);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -83,8 +67,9 @@ $(document).ready(function() {
         }
     });
 
+    //Need to work on this function if time permits
     // The search musixMatch function takes a movie, searches the musixMatch api for it, and then passes the data to createRow
-    var searchArtist = function(artist) {
+    var search = function(artist) {
         $.ajax({
             type: "GET",
             data: {
@@ -115,30 +100,28 @@ $(document).ready(function() {
     };
 
     // Search the musixMatch API for the following artist
-    // searchArtist(artist);
-    //   searchArtist("Taylor Swift");
-    //   searchArtist("The Lion King");
+    // search(artist);
 
+    // function createRow function takes data returned by musixMatch and appends the table data to the tbody
+    // for loop that adds rows to a table on HTML that shows top 10 results that match search query
+    function createRow(response) {
+        for (var x = 0; x < 10; x++) {
+            // Create a new table row element
+            var tRow = $("<tr>");
 
+            //declare local variables & set values
+            var artistTd = $("<td>").text(response.message.body.track_list[x].track.artist_name);
+            var trackTd = $("<td>").text(response.message.body.track_list[x].track.track_name);
 
-    // -----------------------------------------------------------------------------
-    // user input events & functions
-    // event listener that captures & stores user input into variables, updates html & resets input boxes
-    $('#submit').on('click', function getUserInput(event) {
-        event.preventDefault();
+            //append variables to the row
+            tRow.append(artistTd, trackTd);
 
-        artist = $('#artist-input').val().trim();
-        track = $('#track-input').val().trim();
+            //append row to table body on HTML
+            $("tbody").append(tRow);
+        }
+    }
 
-        // artist = artist.split(" ").join("%20")
-
-        console.log(artist + ' ' + track);
-
-        updatePage();
-        resetInput();
-
-    })
-
+    // functions to capture user input & reset textboxes
     function updatePage() {
         console.log('hit updatePage()');
         $('.artist').text(artist);
