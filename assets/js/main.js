@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    var data;
     var artist;
     var track;
 
@@ -10,14 +11,18 @@ $(document).ready(function() {
         // Create a new table row element
         var tRow = $("<tr>");
 
+        for (var x = 0; x < 10; x++) {
+            var artistTd = $("<td>").text(data.message.body.track_list[x].track.track_name);
+            tRow.append(artistTd);
+        }
         // Methods run on jQuery selectors return the selector they we run on
         // This is why we can create and save a reference to a td in the same statement we update its text
-        var titleTd = $("<td>").text(data.Title);
-        var yearTd = $("<td>").text(data.Year);
-        var actorsTd = $("<td>").text(data.Actors);
+        // var titleTd = $("<td>").text(data.);
+        // var yearTd = $("<td>").text(data.Year);
+        // var actorsTd = $("<td>").text(data.Actors);
 
         // Append the newly created table data to the table row
-        tRow.append(titleTd, yearTd, actorsTd);
+        // tRow.append(titleTd, yearTd, actorsTd);
         // Append the table row to the table body
         $("tbody").append(tRow);
     };
@@ -58,6 +63,17 @@ $(document).ready(function() {
             //append source attribute to HTML
             $('.lyrics').append(lyricsDiv);
             // createRow();
+
+
+
+            for (var x = 0; x < 10; x++) {
+                // Create a new table row element
+                var tRow = $("<tr>");
+                var artistTd = $("<td>").text(data.message.body.track_list[x].track.artist_name);
+                var trackTd = $("<td>").text(data.message.body.track_list[x].track.track_name);
+                tRow.append(artistTd, trackTd);
+                $("tbody").append(tRow);
+            }
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
