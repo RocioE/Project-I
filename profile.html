@@ -64,8 +64,15 @@
 
         <div class="row">
             <div class="resultsContainer col-md-12">
+
                 <div>Track: <span class='track'></span></div>
-                <div>Video: <span class="video"></span></div>
+
+                <div>Video: <span class="video">
+                        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+                        <div id="player"></div>
+                    </span>
+                </div>
+
                 <div>Lyrics:
                     <div class="lyrics">
                         <!-- <iframe> will be dynamically added here -->
@@ -98,6 +105,7 @@
     <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
     <!-- javascript -->
     <script type="text/javascript" src="./assets/js/main.js"></script>
+    <script type="text/javascript" src="./assets/js/youtube.js"></script>
 
 </body>
 
