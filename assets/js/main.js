@@ -13,7 +13,9 @@ $(document).ready(function() {
         track = $('#track-input').val().trim();
 
         // artist = artist.split(" ").join("%20")
-
+        if(artist == "") {
+            alert("Name must be filled out");
+        }
         console.log(artist + ' ' + track);
 
         updatePage();
