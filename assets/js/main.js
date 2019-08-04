@@ -16,11 +16,15 @@ $(document).ready(function() {
         if(artist == "") {
             alert("Name must be filled out");
         }
+        else if(track == "") {
+            alert("Track must be filled out");
+        }
+        else {
         console.log(artist + ' ' + track);
 
         updatePage();
         resetInput();
-
+    }
     });
 
     $.ajax({
