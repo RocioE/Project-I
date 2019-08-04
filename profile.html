@@ -16,57 +16,59 @@
 
 <body>
 
+    <!-- search navbar -->
     <div class='header'>
         <div class="searchContainer text-center">
             Search Lyrics by Artist & Song
 
-            <form class="d-inline">
+            <form>
                 <label for="artist-input"></label>
                 <input class="artist-control" type="text" id="artist-input" placeholder="Artist Name">
 
                 <label for="track-input"></label>
                 <input class="track-control" type="text" id="track-input" placeholder="Song">
 
-<<<<<<< HEAD
                 <!-- <a href="index.html" class="btn btn-primary" id="submit">Submit</a> -->
                 <button class="btn btn-primary" id="submit" type="submit" value='submit'>Submit</button>
-=======
-                <a href="index.html" class="btn btn-primary">Submit</a>
->>>>>>> 6b4bd9265bd7e0e929adaffcc7c9637311de36ce
             </form>
         </div>
 
         <div class="jumbotron jumbotron-fluid text-center">
             <div class="artist"></div>
         </div>
+
         <div class="container">
 
-            <div>
-                <h2>Top Results</h2>
-                <table class="table">
-                    <thead>
-                        <tr class="select">
-                            <!-- The scope attribute specifies that this is a header for a column -->
-                            <th scope="col">Artist Name</th>
-                            <th scope="col">Track Name</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Example</td>
-                            <td>Example</td>
-                            <td>Example: Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow</td>
-                        </tr>
-                        <!-- Insert additional movie rows here -->
-                    </tbody>
-                </table>
-            </div>
+            <div class='row'>
+                <div class="topResults col col-md-12">
 
+                    <h2>Top Results</h2>
+                    <table class="table">
+                        <thead>
+                            <tr class="select">
+                                <!-- The scope attribute specifies that this is a header for a column -->
+                                <th scope="col">Artist Name</th>
+                                <th scope="col">Track Name</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Example</td>
+                                <td>Example</td>
+                                <td>Example: Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow</td>
+                            </tr>
+                            <!-- Insert additional movie rows here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
 
             <div class="row">
                 <div class="resultsContainer col-md-12">
-                    <div>Artist Thumbnail: <span class='imgThumbnail'></span></div>
                     <div>Track: <span class='track'></span></div>
                     <div>Video: <span class="video"></span></div>
                     <div>Lyrics:
