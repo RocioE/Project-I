@@ -26,6 +26,19 @@ img {
     margin-left: 10%;
 } */
 
+img {
+    height: 300px;
+    width: 300px !important;
+    margin: 0 auto;
+}
+
+
+/* .container {
+    background: rgb(243, 150, 207);
+    margin-top: 5%;
+    margin-left: 10%;
+} */
+
 .footer {}
 
 .carousel-caption {
@@ -41,4 +54,9 @@ img {
 .carousel-inner>.item>a>img,
 .carousel-inner>.item>img {
     margin: 0 auto;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    background-color: black;
 }
