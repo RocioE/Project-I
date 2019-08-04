@@ -17,9 +17,14 @@ img {
 
 .container {
     background: rgb(223, 219, 219);
+}
+
+
+/* .container {
+    background: rgb(223, 219, 219);
     margin-top: 5%;
     margin-left: 10%;
-}
+} */
 
 .footer {}
 
