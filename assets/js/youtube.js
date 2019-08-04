@@ -3,6 +3,10 @@
 //Need to adjust the code by turning the value of var videoId to a variable that 
 //represents the video id.
 
+//both of these lines of code made the video player creash?
+// $(document.ready(function() {
+// document.onload(function() {
+// document.load(function() {
 
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
@@ -47,3 +51,4 @@ function onPlayerStateChange(event) {
 function stopVideo() {
     player.stopVideo();
 }
+// });
