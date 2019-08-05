@@ -6,44 +6,52 @@ $(document).ready(function() {
     var artistName, trackName;
 
     // event listener that captures & stores user input into global variables,
-   //getUserInput function will test input to make sure it's not empty
-   $('#submit').on('click', function getUserInput(event) {
-    //stops it from doing it's default function
-    event.preventDefault();
-    //remove whitespace & then set value to a global variable
-    artist = $('#artist-input').val().trim();
-    track = $('#track-input').val().trim();
-    //declare local variable, call a function that passes 2 parameters to its function definition
-    //function will return a value and set it to local varialbe
-    var test = testInput(artist, track);
-    //conditional statement
-    if (test == false) {
-        console.log('hit inside test == false');
+    //getUserInput function will test input to make sure it's not empty
+    $('#submit').on('click', function getUserInput(event) {
+
+        //stops it from doing it's default function
+        event.preventDefault();
+
+        //remove whitespace & then set value to a global variable
+        artist = $('#artist-input').val().trim();
+        track = $('#track-input').val().trim();
+
+        //declare local variable, call a function that passes 2 parameters to its function definition
+        //function will return a value and set it to local varialbe
+        var test = testInput(artist, track);
+
+        //conditional statement
+        if (test == false) {
+            console.log('hit inside test == false');
+            //call function to reset HTML textbox input boxes to blank
+            resetInput();
+        } else {
+            console.log('hit inside test == true');
+            console.log(artist + ' , ' + track);
+            //call function to update profile page
+            updatePage();
+            //call function to reset HTML textbox input boxes to blank
+            resetInput();
+        }
+        console.log('hit outside  of if/else conditional');
+
         //call function to reset HTML textbox input boxes to blank
         resetInput();
-    } else {
-        console.log('hit inside test == true');
-        console.log(artist + ' , ' + track);
-        //call function to update profile page
-        updatePage();
-        //call function to reset HTML textbox input boxes to blank
-        resetInput();
+
+        //reformat artist variable so it can be put into ajax url properly
+        // artist = artist.split(" ").join("%20")
+    });
+
+    //defining function that passes 2 parameter values & tests if they're empty strings or not
+    //function will return a boolean value
+    function testInput(artist, track) {
+        if (artist == "" || track == "") {
+            alert("Fields can not be empty");
+            return false;
+        } else {
+            return true;
+        }
     }
-    console.log('hit outside  of if/else conditional');
-    //call function to reset HTML textbox input boxes to blank
-    resetInput();
-    // artist = artist.split(" ").join("%20")
-});
-//defining function that passes 2 parameter values & tests if they're empty strings or not
-//function will return a boolean value
-function testInput(artist, track) {
-    if (artist == "" || track == "") {
-        alert("Fields can not be empty");
-        return false;
-    } else {
-        return true;
-    }
-}
 
     $.ajax({
         type: "GET",
@@ -122,9 +130,9 @@ function testInput(artist, track) {
             }
         });
     };
-
     // Search the musixMatch API for the following artist
     // search(artist);
+
 
     // function createRow function takes data returned by musixMatch and appends the table data to the tbody
     // for loop that adds rows to a table on HTML that shows top 10 results that match search query
