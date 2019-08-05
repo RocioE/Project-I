@@ -52,26 +52,26 @@ function stopVideo() {
     player.stopVideo();
 }
 
-function callYouTube() {
-    $.ajax({
-        type: "GET",
-        data: {
-            apikey: "65556a2efa1feefbbd18ccb3228569c4",
-            videoId: 'QUwxKWT6m7U', //taylor swift - back to december,
+// function callYouTube() {
+//     $.ajax({
+//         type: "GET",
+//         data: {
+//             apikey: "65556a2efa1feefbbd18ccb3228569c4",
+//             videoId: 'QUwxKWT6m7U', //taylor swift - back to december,
 
-        },
-        url: "https://www.youtube.com/iframe_api",
+//         },
+//         url: "https://www.youtube.com/iframe_api",
 
-        success: function(response) {
-            var data = response;
-            console.log(data);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-        }
-    });
-}
+//         success: function(response) {
+//             var data = response;
+//             console.log(data);
+//         },
+//         error: function(jqXHR, textStatus, errorThrown) {
+//             console.log(jqXHR);
+//             console.log(textStatus);
+//             console.log(errorThrown);
+//         }
+//     });
+// }
 
 // });

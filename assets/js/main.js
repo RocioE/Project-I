@@ -6,7 +6,9 @@ $(document).ready(function() {
     var artistName, trackName;
 
     $('.topResults').hide();
+    // $('.resultsContainer').hide();
 
+    //event listener for table row
     $('.clickable').on('click', function redirect() {
         console.log('hit row class=clickable!');
     });
@@ -32,8 +34,12 @@ $(document).ready(function() {
             //call function to reset HTML textbox input boxes to blank
             resetInput();
         } else {
-            console.log('hit inside test == true');
+            // console.log('hit inside test == true');
             console.log(artist + ' , ' + track);
+
+            // Search the musixMatch API for the following artist
+            // search1(artist, track);
+            //search2(artist, track);
 
             //call function to update profile page
             updatePage();
@@ -43,28 +49,16 @@ $(document).ready(function() {
 
             //show topResults div
             $('.topResults').show();
+            $('.resultsContainer').show();
 
         }
-        console.log('hit outside  of if/else conditional');
+        // console.log('hit outside  of if/else conditional');
 
         //call function to reset HTML textbox input boxes to blank
         resetInput();
 
-        //reformat artist variable so it can be put into ajax url properly
-        // artist = artist.split(" ").join("%20")
+
     });
-
-    //defining function that passes 2 parameter values & tests if they're empty strings or not
-    //function will return a boolean value
-    function testInput(artist, track) {
-        if (artist == "" || track == "") {
-            alert("Fields can not be empty");
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     $.ajax({
         type: "GET",
         data: {
@@ -80,7 +74,6 @@ $(document).ready(function() {
         jsonpCallback: 'jsonp_callback',
         contentType: 'application/json',
         success: function(data) {
-            console.log(data);
             response = data;
             console.log(response);
 
@@ -91,11 +84,12 @@ $(document).ready(function() {
             console.log('track_share_url ' + trackShare)
 
             //writing or appending to HTML
-            $('.artist').text(artistName);
-            $('.track').text(trackName);
+            $('.artist').text(artist);
+            $('.track').text(track);
 
+            //url for artist & track lyrics
             var source = "https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark";
-            // var source = "https://www.musixmatch.com/lyrics/" + q_artist + "/" + q_track + "/embed?theme=dark";
+            // var source = "https://www.musixmatch.com/lyrics/" + artist + "/" + track + "/embed?theme=dark";
 
             //add source attribute to iframe tag
             var lyricsDiv = $('<iframe>').attr('src', source);
@@ -110,40 +104,6 @@ $(document).ready(function() {
             console.log(errorThrown);
         }
     });
-
-    //Need to work on this function if time permits
-    // The search musixMatch function takes a movie, searches the musixMatch api for it, and then passes the data to createRow
-    var search = function(artist) {
-        $.ajax({
-            type: "GET",
-            data: {
-                apikey: "65556a2efa1feefbbd18ccb3228569c4",
-                // q_track: "back to december",
-                q_artist: artist,
-                f_has_lyrics: 1,
-                format: "jsonp",
-                callback: "jsonp_callback"
-            },
-            url: "http://api.musixmatch.com/ws/1.1/track.search",
-            dataType: "jsonp",
-            jsonpCallback: 'jsonp_callback',
-            contentType: 'application/json',
-            success: function(data) {
-                console.log('artist search ', data);
-                // console.log(data.message.body.track_list[0].track.artist_name);
-                // var artistName = data.message.body.track_list[0].track.artist_name;
-                // $('.artist').text(artistName);
-
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
-            }
-        });
-    };
-    // Search the musixMatch API for the following artist
-    // search(artist);
 
 
     // function createRow function takes data returned by musixMatch and appends the table data to the tbody
@@ -168,18 +128,112 @@ $(document).ready(function() {
         }
     }
 
+    //defining function that passes 2 parameter values & tests if they're empty strings or not
+    //function will return a boolean value
+    function testInput(artist, track) {
+        if (artist == "" || track == "") {
+            // alert("Fields can not be empty");
+            return false;
+        } else {
+            return true;
+        }
+    }
     // functions to capture user input & reset textboxes
     function updatePage() {
-        console.log('hit updatePage()');
+        // console.log('hit updatePage()');
         $('.artist').text(artist);
         $('.track').text(track);
     }
 
     function resetInput() {
-        console.log('hit resetInput()');
+        // console.log('hit resetInput()');
         $('.artist-control').val('');
         $('.track-control').val('');
     }
+
+    //-----------------------------------------Not Working ajax------------------------------------------------------
+    // -----------------------------functions trying to call musixMatch API--------------------------
+    function search1(artist, track) {
+
+        var artist = encodeURI(artist);
+        var track = encodeURI(track);
+
+        $.ajax({
+            type: "GET",
+            data: {
+                apikey: "65556a2efa1feefbbd18ccb3228569c4",
+                q_track: track,
+                q_artist: artist,
+                f_has_lyrics: 1,
+                format: "jsonp",
+                callback: "jsonp_callback"
+            },
+            url: "http://api.musixmatch.com/ws/1.1/track.search",
+            dataType: "jsonp",
+            jsonpCallback: 'jsonp_callback',
+            contentType: 'application/json',
+            success: function(data) {
+                response = data;
+                console.log(response);
+
+                //declare & initialize local variables for easier way to reference data wanted 
+                artistName = response.message.body.track_list[0].track.artist_name;
+                trackName = response.message.body.track_list[0].track.track_name;
+                var trackShare = response.message.body.track_list[0].track.track_share_url;
+                console.log('track_share_url ' + trackShare)
+
+                //writing or appending to HTML
+                $('.artist').text(artistName);
+                $('.track').text(trackName);
+
+                //url for artist & track lyrics
+                var source = "https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark";
+                // var source = "https://www.musixmatch.com/lyrics/" + q_artist + "/" + q_track + "/embed?theme=dark";
+
+                //add source attribute to iframe tag
+                var lyricsDiv = $('<iframe>').attr('src', source);
+
+                //append source attribute to HTML
+                $('.lyrics').append(lyricsDiv);
+                createRow(response);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }
+        });
+    }
+
+    //Need to work on this function if time permits
+    // The search musixMatch function takes a , searches the musixMatch api for it, and then passes the data to createRow
+    var search2 = function(artist, track) {
+
+        //reformat artist variable so it can be put into ajax url properly
+        // artist = encodeURI(artist);
+        // track = encodeURI(track);
+
+        console.log(artist);
+        console.log(track);
+
+
+        //ajax complex response web adddress (artist, track)
+        //http://api.musixmatch.com/ws/1.1/track.search?callback=jsonp_callback&apikey=65556a2efa1feefbbd18ccb3228569c4&q_track=back%20to%20december&q_artist=taylor%2520swift&f_has_lyrics=1&format=jsonp&callback=jsonp_callback&_=1564850523557
+        //ajax simple response web address (artist, track)
+        //http://api.musixmatch.com/ws/1.1/track.search?&apikey=65556a2efa1feefbbd18ccb3228569c4&q_track=back%20to%20december&q_artist=taylor%2520swift
+
+        var queryUrl = "http://api.musixmatch.com/ws/1.1/track.search?callback=jsonp_callback&apikey=65556a2efa1feefbbd18ccb3228569c4&q_track=" +
+            track + "&q_artist=" + artist + "&f_has_lyrics=1&format=jsonp&callback=jsonp_callback&_=1564850523557";
+
+        console.log(encodeURI(queryUrl));
+
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
+        }).then(function(response) {
+            console.log(response);
+        });
+    };
 
 
 });
