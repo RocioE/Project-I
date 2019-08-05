@@ -5,6 +5,8 @@ $(document).ready(function() {
     var track;
     var artistName, trackName;
 
+    $('.topResults').hide();
+
     // event listener that captures & stores user input into global variables,
     //getUserInput function will test input to make sure it's not empty
     $('#submit').on('click', function getUserInput(event) {
@@ -28,10 +30,16 @@ $(document).ready(function() {
         } else {
             console.log('hit inside test == true');
             console.log(artist + ' , ' + track);
+
             //call function to update profile page
             updatePage();
+
             //call function to reset HTML textbox input boxes to blank
             resetInput();
+
+            //show topResults div
+            $('.topResults').show();
+
         }
         console.log('hit outside  of if/else conditional');
 
