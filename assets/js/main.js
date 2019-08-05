@@ -5,7 +5,7 @@ $(document).ready(function() {
     var track;
     var artistName, trackName;
 
-    // $('.topResults').hide();
+    $('.topResults').hide();
 
     $('.clickable').on('click', function redirect() {
         console.log('hit row class=clickable!');
