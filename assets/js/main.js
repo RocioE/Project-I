@@ -5,7 +5,11 @@ $(document).ready(function() {
     var track;
     var artistName, trackName;
 
-    $('.topResults').hide();
+    // $('.topResults').hide();
+
+    $('.clickable').on('click', function redirect() {
+        console.log('hit row class=clickable!');
+    });
 
     // event listener that captures & stores user input into global variables,
     //getUserInput function will test input to make sure it's not empty
@@ -146,8 +150,11 @@ $(document).ready(function() {
     // for loop that adds rows to a table on HTML that shows top 10 results that match search query
     function createRow(response) {
         for (var x = 0; x < 10; x++) {
-            // Create a new table row element
-            var tRow = $("<tr>");
+            // Create a new table row element with a class=select
+            var tRow = $("<tr>").addClass("clickable").attr("data-url", "./profile.html");
+
+            // var aRow = $('<a>').addClass("clickable").attr("href", "./profile.html");
+            // tRow.append(aRow);
 
             //declare local variables & set values
             var artistTd = $("<td>").text(response.message.body.track_list[x].track.artist_name);
