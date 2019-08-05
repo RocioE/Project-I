@@ -6,6 +6,11 @@ iframe {
     border: 0;
 }
 
+h1 {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 40px;
+}
+
 .btn {
     background-color: grey;
 }
