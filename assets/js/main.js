@@ -5,8 +5,8 @@ $(document).ready(function() {
     var track;
     var artistName, trackName;
 
-    // $('.topResults').hide();
-    // $('.resultsContainer').hide();
+    $('.topResults').hide();
+    $('.resultsContainer').hide();
 
     //event listener for table row
     $('.clickable').on('click', function redirect() {
@@ -50,6 +50,8 @@ $(document).ready(function() {
 
             $('.topResults').show();
             $('.resultsContainer').show();
+            $('.carousel').hide();
+
             // window.location.href = "./profile.html"
             updatePage();
 
