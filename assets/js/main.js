@@ -5,7 +5,7 @@ $(document).ready(function() {
     var track;
     var artistName, trackName;
 
-    $('.topResults').hide();
+    // $('.topResults').hide();
     // $('.resultsContainer').hide();
 
     //event listener for table row
@@ -47,7 +47,8 @@ $(document).ready(function() {
             //call function to reset HTML textbox input boxes to blank
             resetInput();
 
-            //show topResults div
+            window.location.href = "./profile.html"
+                //show topResults div
             $('.topResults').show();
             $('.resultsContainer').show();
 
@@ -56,6 +57,7 @@ $(document).ready(function() {
 
         //call function to reset HTML textbox input boxes to blank
         resetInput();
+
 
 
     });
