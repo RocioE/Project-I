@@ -17,34 +17,16 @@ h1 {
 
 img {
     height: 300px;
-    width: 300px;
-}
-
-.container {
-    background: rgb(223, 219, 219);
-}
-
-
-/* .container {
-    background: rgb(223, 219, 219);
-    margin-top: 5%;
-    margin-left: 10%;
-} */
-
-img {
-    height: 300px;
     width: 300px !important;
     margin: 0 auto;
 }
 
-
-/* .container {
-    background: rgb(243, 150, 207);
+.container {
+    background: rgb(20, 168, 179);
     margin-top: 5%;
     margin-left: 10%;
-} */
-
-.footer {}
+    color: black;
+}
 
 .carousel-caption {
     position: relative !important;
@@ -52,8 +34,14 @@ img {
 
 .carousel-caption h3 {
     position: absolute;
-    /* top: 20px; */
-    /* left: -134px; */
+    top: 20px;
+    position: center;
+    color: rgb(4, 81, 104);
+}
+
+.carousel-inner>.item>a>img,
+.carousel-inner>.item>img {
+    margin: 0 auto;
 }
 
 .carousel-inner>.item>a>img,
@@ -63,5 +51,29 @@ img {
 
 .carousel-control-next,
 .carousel-control-prev {
-    background-color: black;
+    background-color: rgb(20, 168, 179);
+}
+
+.jumbotron {
+    background-color: rgb(20, 168, 179);
+}
+
+.span {
+    color: black;
+}
+
+.text-muted {
+    color: black;
+}
+
+footer {
+    color: black;
+}
+
+.mt-0 {
+    color: rgb(0, 89, 255);
+}
+
+.jumbotron {
+    color: rgb(4, 52, 143);
 }
