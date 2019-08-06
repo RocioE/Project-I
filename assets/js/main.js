@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     // event listener that captures & stores user input into global variables,
     //getUserInput function will test input to make sure it's not empty
-    $('#submit').on('click', function getUserInput(event) {
+    $('.submit').on('click', function getUserInput(event) {
 
         //stops it from doing it's default function
         event.preventDefault();
@@ -42,15 +42,16 @@ $(document).ready(function() {
             //search2(artist, track);
 
             //call function to update profile page
-            updatePage();
+
 
             //call function to reset HTML textbox input boxes to blank
             resetInput();
 
-            window.location.href = "./profile.html"
-                //show topResults div
+
             $('.topResults').show();
             $('.resultsContainer').show();
+            // window.location.href = "./profile.html"
+            updatePage();
 
         }
         // console.log('hit outside  of if/else conditional');
@@ -142,7 +143,7 @@ $(document).ready(function() {
     }
     // functions to capture user input & reset textboxes
     function updatePage() {
-        // console.log('hit updatePage()');
+        console.log('hit updatePage()');
         $('.artist').text(artist);
         $('.track').text(track);
     }
@@ -185,8 +186,8 @@ $(document).ready(function() {
                 console.log('track_share_url ' + trackShare)
 
                 //writing or appending to HTML
-                $('.artist').text(artistName);
-                $('.track').text(trackName);
+                $('.artist').text(artist);
+                $('.track').text(track);
 
                 //url for artist & track lyrics
                 var source = "https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark";
