@@ -22,7 +22,7 @@ img {
 }
 
 .container {
-    background: rgb(20, 168, 179);
+    background: rgb(157, 172, 173);
     margin-top: 5%;
     margin-left: 10%;
     color: black;
@@ -51,11 +51,11 @@ img {
 
 .carousel-control-next,
 .carousel-control-prev {
-    background-color: rgb(20, 168, 179);
+    background: rgb(157, 172, 173);
 }
 
 .jumbotron {
-    background-color: rgb(20, 168, 179);
+    background: rgb(157, 172, 173);
 }
 
 .span {
