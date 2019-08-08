@@ -74,7 +74,7 @@ $(document).ready(function() {
             format: "jsonp",
             callback: "jsonp_callback"
         },
-        url: "http://api.musixmatch.com/ws/1.1/track.search",
+        url: "https://api.musixmatch.com/ws/1.1/track.search",
         dataType: "jsonp",
         jsonpCallback: 'jsonp_callback',
         contentType: 'application/json',
@@ -116,10 +116,13 @@ $(document).ready(function() {
     function createRow(response) {
         for (var x = 0; x < 10; x++) {
             // Create a new table row element with a class=select
-            var tRow = $("<tr>").addClass("clickable").attr("data-url", "./profile.html");
+            // var tRow = $("<tr>").addClass("clickable").attr("data-url", "./profile.html");
 
-            // var aRow = $('<a>').addClass("clickable").attr("href", "./profile.html");
-            // tRow.append(aRow);
+            var tRow = $("<tr>");
+
+            var aRow = $('<a>').addClass("clickable").attr("href", "./index.html");
+
+            aRow.append(tRow);
 
             //declare local variables & set values
             var artistTd = $("<td>").text(response.message.body.track_list[x].track.artist_name);
@@ -129,7 +132,7 @@ $(document).ready(function() {
             tRow.append(artistTd, trackTd);
 
             //append row to table body on HTML
-            $("tbody").append(tRow);
+            $("tbody").append(aRow);
         }
     }
 
