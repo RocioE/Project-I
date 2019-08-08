@@ -30,14 +30,14 @@ $(document).ready(function() {
             resetInput();
         } else {
             // console.log('hit inside test == true');
-            console.log(artist + ' , ' + track);
+            // console.log(artist + ' , ' + track);
 
             // Search the musixMatch API for the following artist
-            // search1(artist, track);
+            search1(artist, track);
             //search2(artist, track);
 
             //call function to update profile page
-
+            updatePage();
 
             //call function to reset HTML textbox input boxes to blank
             resetInput();
@@ -46,8 +46,6 @@ $(document).ready(function() {
             $('.topResults').show();
             $('.carousel').hide();
             $('.resultsContainer').show();
-
-            updatePage();
 
         }
         // console.log('hit outside  of if/else conditional');
@@ -63,69 +61,77 @@ $(document).ready(function() {
         // $('.resultsContainer').show();
     });
 
-    $.ajax({
-        type: "GET",
-        data: {
-            apikey: "65556a2efa1feefbbd18ccb3228569c4",
-            q_track: "back to december",
-            q_artist: "taylor%20swift",
-            f_has_lyrics: 1,
-            format: "jsonp",
-            callback: "jsonp_callback"
-        },
-        url: "https://api.musixmatch.com/ws/1.1/track.search",
-        dataType: "jsonp",
-        jsonpCallback: 'jsonp_callback',
-        contentType: 'application/json',
-        success: function(data) {
-            response = data;
-            console.log(response);
+    // $.ajax({
+    //     type: "GET",
+    //     data: {
+    //         apikey: "65556a2efa1feefbbd18ccb3228569c4",
+    //         q_track: "back to december",
+    //         q_artist: "taylor%20swift",
+    //         f_has_lyrics: 1,
+    //         format: "jsonp",
+    //         callback: "jsonp_callback"
+    //     },
+    //     url: "https://api.musixmatch.com/ws/1.1/track.search",
+    //     dataType: "jsonp",
+    //     jsonpCallback: 'jsonp_callback',
+    //     contentType: 'application/json',
+    //     success: function(data) {
+    //         response = data;
+    //         console.log(response);
 
-            //declare & initialize local variables for easier way to reference data wanted 
-            artistName = response.message.body.track_list[0].track.artist_name;
-            trackName = response.message.body.track_list[0].track.track_name;
-            var trackShare = response.message.body.track_list[0].track.track_share_url;
-            console.log('track_share_url ' + trackShare)
+    //         //declare & initialize local variables for easier way to reference data wanted 
+    //         artistName = response.message.body.track_list[0].track.artist_name;
+    //         trackName = response.message.body.track_list[0].track.track_name;
+    //         var trackShare = response.message.body.track_list[0].track.track_share_url;
+    //         console.log('track_share_url ' + trackShare)
 
-            //writing or appending to HTML
-            $('.artist').text(artist);
-            $('.track').text(track);
+    //         //writing or appending to HTML
+    //         $('.artist').text(artist);
+    //         $('.track').text(track);
 
-            //url for artist & track lyrics
-            var source = "https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark";
-            // var source = "https://www.musixmatch.com/lyrics/" + artist + "/" + track + "/embed?theme=dark";
+    //         //url for artist & track lyrics
+    //         var source = "https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark";
+    //         // var source = "https://www.musixmatch.com/lyrics/" + artist + "/" + track + "/embed?theme=dark";
 
-            //add source attribute to iframe tag
-            var lyricsDiv = $('<iframe>').attr('src', source);
+    //         //add source attribute to iframe tag
+    //         var lyricsDiv = $('<iframe>').attr('src', source);
 
-            //append source attribute to HTML
-            $('.lyrics').append(lyricsDiv);
-            createRow(response);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-        }
-    });
+    //         //append source attribute to HTML
+    //         $('.lyrics').append(lyricsDiv);
+    //         createRow(response);
+    //     },
+    //     error: function(jqXHR, textStatus, errorThrown) {
+    //         console.log(jqXHR);
+    //         console.log(textStatus);
+    //         console.log(errorThrown);
+    //     }
+    // });
 
 
     // function createRow function takes data returned by musixMatch and appends the table data to the tbody
     // for loop that adds rows to a table on HTML that shows top 10 results that match search query
     function createRow(response) {
-        for (var x = 0; x < 10; x++) {
+
+        //declare & set variable 
+        var list = response.message.body.track_list;
+
+        for (var x = 0; x < list.length; x++) {
             // Create a new table row element with a class=select
+            var tRow = $("<tr>");
             // var tRow = $("<tr>").addClass("clickable").attr("data-url", "./profile.html");
 
-            var tRow = $("<tr>");
-
+            //ATTN: set href to ./profile.html once class=topResults works on index.html instead of profile.html
             var aRow = $('<a>').addClass("clickable").attr("href", "#");
 
             aRow.append(tRow);
 
             //declare local variables & set values
-            var artistTd = $("<td>").text(response.message.body.track_list[x].track.artist_name);
-            var trackTd = $("<td>").text(response.message.body.track_list[x].track.track_name);
+            var artistTd = list[x].track.artist_name;
+            var trackTd = list[x].track.track_name;
+
+            //write ajax response for artist & track to topResults > table
+            $("<td>").text(artistTd);
+            $("<td>").text(trackTd);
 
             //append variables to the row
             tRow.append(artistTd, trackTd);
@@ -182,22 +188,29 @@ $(document).ready(function() {
                 response = data;
                 console.log(response);
 
-                //declare & initialize local variables for easier way to reference data wanted 
-                artistName = response.message.body.track_list[0].track.artist_name;
-                trackName = response.message.body.track_list[0].track.track_name;
-                var trackShare = response.message.body.track_list[0].track.track_share_url;
-                console.log('track_share_url ' + trackShare)
+                var list = response.message.body.track_list;
 
-                //writing or appending to HTML
-                $('.artist').text(artist);
+                for (var x = 0; x < list.length; x++) {
+
+                    //declare & initialize local variables for easier way to reference data wanted 
+                    var artistName = list[x].track.artist_name;
+                    var trackName = list[x].track.track_name;
+                    var trackShare = list[x].track.track_share_url;
+                    console.log('track_share_url ' + trackShare)
+                }
+
+                //writing or appending to profile.html 
+                $('.artist').text(artistName);
                 $('.track').text(track);
 
-                //url for artist & track lyrics
-                var source = "https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark";
-                // var source = "https://www.musixmatch.com/lyrics/" + q_artist + "/" + q_track + "/embed?theme=dark";
+                //url to show lyrics for artist & track 
+                // var source = "https://www.musixmatch.com/lyrics/Taylor-Swift/Back-to-December/embed?theme=dark";
+                var source = trackShare + "/embed?theme=dark";
 
                 //add source attribute to iframe tag
+                // var lyricsDiv = $('<iframe>').attr('src', source);
                 var lyricsDiv = $('<iframe>').attr('src', source);
+
 
                 //append source attribute to HTML
                 $('.lyrics').append(lyricsDiv);
