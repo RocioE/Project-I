@@ -56,10 +56,13 @@ $(document).ready(function() {
         resetInput();
 
     });
+
     //event listener to show this section on click
     $('.clickable').on('click', function() {
-        $('.resultsContainer').show();
-    })
+        console.log('clickable row');
+        // $('.resultsContainer').show();
+    });
+
     $.ajax({
         type: "GET",
         data: {
@@ -116,7 +119,7 @@ $(document).ready(function() {
 
             var tRow = $("<tr>");
 
-            var aRow = $('<a>').addClass("clickable").attr("href", "./#.html");
+            var aRow = $('<a>').addClass("clickable").attr("href", "#");
 
             aRow.append(tRow);
 
