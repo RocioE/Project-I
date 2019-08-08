@@ -27,22 +27,21 @@
 
 
     <!-- header -->
-    <a>
-        <div class="jumbotron jumbotron-fluid text-center py-2 ">
-    </a>
-    <h1 class="mt-0">MmmBop!</h1>
-    <p>Lyrics on the Go!</p>
-    <form>
-        <label for="artist-input"></label>
-        <input class="artist-control" type="text" id="artist-input" placeholder="Artist Name">
+    <div class="jumbotron jumbotron-fluid text-center py-2 ">
+        <h1 class="mt-0">MmmBop!</h1>
+        <p>Lyrics on the Go!</p>
+        <form>
+            <label for="artist-input"></label>
+            <input class="artist-control" type="text" id="artist-input" placeholder="Artist Name">
 
-        <label for="track-input"></label>
-        <input class="track-control" type="text" id="track-input" placeholder="Song">
+            <label for="track-input"></label>
+            <input class="track-control" type="text" id="track-input" placeholder="Song">
 
-        <!-- <a href="index.html" class="btn btn-primary" id="submit">Submit</a> -->
-        <button class="btn btn-primary" id="submit" type="submit" value='submit'>Submit</button>
-    </form>
+            <!-- <a href="index.html" class="btn btn-primary" id="submit">Submit</a> -->
+            <button class="btn btn-primary submit" id="submit" type="submit" value='submit'>Submit</button>
+        </form>
     </div>
+
     <!--bootstrap carousel using indicators-->
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -52,11 +51,6 @@
             <div class="carousel-item">
                 <img class="d-block" src="./assets/images/drake.jpg" alt="Second slide">
             </div>
-            <div class="carousel-item">
-                <img class="d-block" src="./assets/images/thestruts.jpg" alt="Third slide">
-
-            </div>
-
             <div class="carousel-item">
                 <img class="d-block" src="./assets/images/neverreallyover.jpg" alt="forth slide">
 
@@ -76,13 +70,28 @@
         </a>
     </div>
 
+    <!-- will add this back in after it's working correctly on profile.html -->
+    <!-- <div class='container'>
+        <div class='row'>
+            <div class="topResults col col-md-6">
+                <h2>Top Results</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Artist Name</th>
+                            <th scope="col">Track Name</th>
+                        </tr>
+                    </thead>
+                    <tbody> -->
+    <!-- row populated with an array of top results for track names will be dynamically added here from main.js -->
+    <!-- </tbody>
+                </table>
+            </div>
+        </div> -->
 
-    <footer class="footer">
-        <div class="container">
+    <!-- <footer class="footer fluid">
             <strong><span class="text-muted">@MmmBop!@2019</span></strong>
-
-        </div>
-    </footer>
+        </footer> -->
 
     <!-- DO Not Remove any of these script tags.  -->
     <!-- You may add script tags to them if they don't mess up the functionality of javascript 

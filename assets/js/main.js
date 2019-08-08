@@ -8,11 +8,6 @@ $(document).ready(function() {
     $('.topResults').hide();
     $('.resultsContainer').hide();
 
-    //event listener for table row
-    $('.clickable').on('click', function redirect() {
-        console.log('hit row class=clickable!');
-    });
-
     // event listener that captures & stores user input into global variables,
     //getUserInput function will test input to make sure it's not empty
     $('.submit').on('click', function getUserInput(event) {
@@ -49,10 +44,9 @@ $(document).ready(function() {
 
 
             $('.topResults').show();
-            $('.resultsContainer').show();
             $('.carousel').hide();
+            $('.resultsContainer').show();
 
-            // window.location.href = "./profile.html"
             updatePage();
 
         }
@@ -61,9 +55,11 @@ $(document).ready(function() {
         //call function to reset HTML textbox input boxes to blank
         resetInput();
 
-
-
     });
+    //event listener to show this section on click
+    $('.clickable').on('click', function() {
+        $('.resultsContainer').show();
+    })
     $.ajax({
         type: "GET",
         data: {
@@ -120,7 +116,7 @@ $(document).ready(function() {
 
             var tRow = $("<tr>");
 
-            var aRow = $('<a>').addClass("clickable").attr("href", "./index.html");
+            var aRow = $('<a>').addClass("clickable").attr("href", "./#.html");
 
             aRow.append(tRow);
 
@@ -148,7 +144,7 @@ $(document).ready(function() {
     }
     // functions to capture user input & reset textboxes
     function updatePage() {
-        console.log('hit updatePage()');
+        // console.log('hit updatePage()');
         $('.artist').text(artist);
         $('.track').text(track);
     }
@@ -163,8 +159,7 @@ $(document).ready(function() {
     // -----------------------------functions trying to call musixMatch API--------------------------
     function search1(artist, track) {
 
-        var artist = encodeURI(artist);
-        var track = encodeURI(track);
+        console.log(artist + ' & ' + track);
 
         $.ajax({
             type: "GET",
@@ -176,7 +171,7 @@ $(document).ready(function() {
                 format: "jsonp",
                 callback: "jsonp_callback"
             },
-            url: "http://api.musixmatch.com/ws/1.1/track.search",
+            url: "https://api.musixmatch.com/ws/1.1/track.search",
             dataType: "jsonp",
             jsonpCallback: 'jsonp_callback',
             contentType: 'application/json',
